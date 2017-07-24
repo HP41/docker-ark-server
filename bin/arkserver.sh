@@ -1,9 +1,7 @@
 #!/bin/bash
-STEAM_PORT=${STEAM_PORT:-27015}
-GAME_PORT=${GAME_PORT:-7777}
 SESSION_MAP=${SESSION_MAP:-"TheIsland"}
 SESSION_MAX_PLAYERS=${SESSION_MAX_PLAYERS:-"70"}
-STEAMCMD_TAR_URL=${STEAMCMD_LINUX_TAR:-"https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"}
+STEAMCMD_LINUX_TAR=${STEAMCMD_LINUX_TAR:-"https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"}
 
 STEAM_DIR=/Steam
 ARK_DIR=/arkserver
@@ -14,14 +12,14 @@ if [[ "$(whoami)" != "steam" ]]; then
 fi
 
 if [[ -n "${SERVER_PARAMS}" ]]; then
-    echo "WARNING: Overridden server params. STEAM_PORT, GAME_PORT, and SESSION_NAME will be discarded."
+    echo "WARNING: Overridden server params. SESSION_MAP, and SESSION_MAX_PLAYERS will be discarded."
 else 
     SERVER_PARAMS="${SESSION_MAP}?listen?MaxPlayers=${SESSION_MAX_PLAYERS} -server -log"
 fi
 
 cd ${STEAM_DIR}
 if [[ ! -x steamcmd.sh ]]; then
-    curl -sqL "${STEAMCMD_TAR_URL}" | tar zxvf -
+    curl -sqL "${STEAMCMD_LINUX_TAR}" | tar zxvf -
     chmod +x steamcmd.sh
 fi
 
