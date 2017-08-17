@@ -2,8 +2,7 @@ version: '2'
 services:
   ark:
     build: .
-    restart: always
-    network_mode: "host"
+    restart: never
     tty: true
     network_mode: host
     volumes:
