@@ -71,3 +71,7 @@ main() {
 }
 
 main
+
+# TODO: ability to do docker-compose exec ark <arkmanager command>
+#       ie: docker-compose exec ark update --updatemods
+# TODO: ability to do docker-compose exec ark bash // drops to a bash shell
