@@ -5,6 +5,13 @@ services:
     restart: never
     tty: true
     network_mode: host
+    stop_grace_period: 10m
+    stop_signal: SIGINT
     volumes:
       - ./data:/home/steam
       - ./bootstrap:/bootstrap
+    ulimits:
+      nproc: 100000
+      nofile:
+        soft: 100000
+        hard: 100000
