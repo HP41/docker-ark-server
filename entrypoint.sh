@@ -1,9 +1,9 @@
 #!/bin/bash
 AST_VERSION="${AST_VERSION:-v1.6.33}"
 CONFIG_BOOTSTRAP_DIR=/bootstrap
-declare -A CONFIG_PATHS;CONFIG_PATHS[".arkmanager.cfg"]="~/.arkmanager.cfg"
-                        CONFIG_PATHS["main.cfg"]="~/.config/arkmanager/instances/main.cfg"
-                        CONFIG_PATHS["GameUserSettings.ini"]="~/ARK/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
+declare -A CONFIG_PATHS;CONFIG_PATHS[".arkmanager.cfg"]="/home/steam/.arkmanager.cfg"
+                        CONFIG_PATHS["main.cfg"]="/home/steam/.config/arkmanager/instances/main.cfg"
+                        CONFIG_PATHS["GameUserSettings.ini"]="/home/steam/ARK/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
 
 isASTInstalled() {
     [ "$(which arkmanager)" = "/home/steam/bin/arkmanager" ]
@@ -37,8 +37,9 @@ bootstrapConfig() {
     for file in $(find ${bootstrap_dir} -maxdepth 1 -type f); do
         dest_path="${CONFIG_PATHS[$(basename "$file")]}"
         ([ -f "${file}" ] && [ -n "${dest_path}" ]) || continue
-        mkdir -p $(dirname ${dest_path})        
+        mkdir -p $(dirname ${dest_path})
         cp ${file} ${dest_path}
+        ls -al $file
         ls -al $dest_path
     done
 }
