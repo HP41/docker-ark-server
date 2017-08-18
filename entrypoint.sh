@@ -67,7 +67,7 @@ main() {
         arkmanager checkmodupdate --verbose
     fi
 
-    exec arkmanager start
+    exec arkmanager run
 }
 
 main
