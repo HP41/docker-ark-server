@@ -95,4 +95,4 @@ main() {
     esac
 }
 
-main
+main $@
