@@ -63,8 +63,8 @@ main() {
 
     if ! isARKInstalled; then
         arkmanager install --verbose
-        arkmanager update --verbose
-        arkmanager updatemods --verbose
+        arkmanager checkupdate --verbose
+        arkmanager checkmodupdate --verbose
     fi
 
     exec arkmanager start
