@@ -7,11 +7,11 @@ ADD entrypoint.sh /
 RUN apt-get update && \ 
     apt-get -y install perl-modules curl lsof libc6-i386 lib32gcc1 bzip2 unzip vim sudo && \
     useradd -m steam && \
-    chmod +x /tini && \
-    chmod +x /entrypoint.sh 
+    chmod +x /tini
+RUN chmod +x /entrypoint.sh 
     
-ENTRYPOINT ["/tini", "--"]
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/tini", "--", "/entrypoint.sh"]
+CMD ["run"]
 
 USER steam
 WORKDIR /home/steam

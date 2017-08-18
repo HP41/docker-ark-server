@@ -48,11 +48,22 @@ isARKInstalled() {
     [ -f "/home/steam/ARK/steamapps/appmanifest_376030.acf" ]
 }
 
-main() {
+mustBeSteamUser() {
     if [ $(whoami) != 'steam' ]; then
         >2& echo "ERROR: Must run as steam user."
         exit 1
     fi
+}
+checkForUpdates() {
+    mustBeSteamUser
+
+    arkmanager checkupdate --verbose
+    arkmanager installmods --verbose
+    arkmanager checkmodupdate --verbose
+}
+
+arkManager() {
+    mustBeSteamUser
 
     if ! (isASTInstalled && isASTVersionSameAs "${AST_VERSION}"); then
         installAST "${AST_VERSION}"
@@ -64,15 +75,22 @@ main() {
 
     if ! isARKInstalled; then
         arkmanager install --verbose
-        arkmanager checkupdate --verbose
-        arkmanager checkmodupdate --verbose
+        checkForUpdates
     fi
 
-    exec arkmanager run
+    exec arkmanager $@
 }
 
-main
-
-# TODO: ability to do docker-compose exec ark <arkmanager command>
-#       ie: docker-compose exec ark update --updatemods
-# TODO: ability to do docker-compose exec ark bash // drops to a bash shell
+main() {
+    case $1 in
+    doUpdate)
+        checkForUpdates
+        ;;
+    bash)
+        exec /bin/bash
+        ;;
+    *)
+        arkManager $@
+        ;;
+    esac
+}
