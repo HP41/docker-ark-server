@@ -62,8 +62,7 @@ checkForUpdates() {
     mustBeSteamUser
     
     arkmanager installmods --verbose
-    arkmanager checkupdate --verbose
-    arkmanager checkmodupdate --verbose
+    arkmanager checkupdate --update-mods --verbose
 }
 
 

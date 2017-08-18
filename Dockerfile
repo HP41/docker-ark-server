@@ -8,12 +8,13 @@ RUN apt-get update && \
     useradd -m steam && \
     chmod +x /tini
 
-ADD entrypoint.sh /
-RUN chmod +x /entrypoint.sh 
-    
 ENTRYPOINT ["/tini", "--", "/entrypoint.sh"]
 CMD ["run"]
 
 USER steam
 WORKDIR /home/steam
 VOLUME /home/steam
+
+ADD entrypoint.sh /
+RUN chmod +x /entrypoint.sh 
+    
