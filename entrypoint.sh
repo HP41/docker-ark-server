@@ -54,13 +54,18 @@ mustBeSteamUser() {
         exit 1
     fi
 }
+
+areModsInstalled() {
+    ! arkmanager getpid 2>1 | grep -q 'install this mod'
+}
 checkForUpdates() {
     mustBeSteamUser
-
-    arkmanager checkupdate --verbose
+    
     arkmanager installmods --verbose
+    arkmanager checkupdate --verbose
     arkmanager checkmodupdate --verbose
 }
+
 
 arkManager() {
     mustBeSteamUser
@@ -76,6 +81,10 @@ arkManager() {
     if ! isARKInstalled; then
         arkmanager install --verbose
         checkForUpdates
+    fi
+
+    if ! areModsInstalled; then
+        arkmanager installmods --verbose
     fi
 
     exec arkmanager $@
