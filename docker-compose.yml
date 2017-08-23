@@ -5,8 +5,7 @@ services:
     restart: never
     tty: true
     network_mode: host
-    stop_grace_period: 10m
-    stop_signal: SIGINT
+    cpuset: "0-7"
     volumes:
       - ./data:/home/steam
       - ./bootstrap:/bootstrap
