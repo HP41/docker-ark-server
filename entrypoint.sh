@@ -86,8 +86,8 @@ arkManager() {
         arkmanager installmods --verbose
     fi
     
-    if [ -z "$@" ]; then
-      echo "Executing in background : arkmanager @$"
+    if [ -n "$@" ]; then
+      echo "Executing in background : arkmanager $@"
       arkmanager $@ &
     fi
     sleep infinity
