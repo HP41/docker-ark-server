@@ -1,8 +1,7 @@
-version: '2.2'
+version: '2'
 services:
   ark:
     build: .
-    init: true
     tty: true
     restart: on-failure
     network_mode: host
