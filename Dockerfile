@@ -9,7 +9,7 @@ RUN apt-get update && \
     chmod +x /tini
 
 ENTRYPOINT ["/tini", "--", "/entrypoint.sh"]
-CMD ["run"]
+CMD [""]
 
 WORKDIR /home/steam
 VOLUME /home/steam

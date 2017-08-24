@@ -62,7 +62,7 @@ checkForUpdates() {
     mustBeSteamUser
     
     arkmanager installmods --verbose
-    arkmanager checkupdate --update-mods --verbose
+    arkmanager update --save-world --update-mods --verbose --no-autostart --backup
 }
 
 
@@ -85,8 +85,12 @@ arkManager() {
     if ! areModsInstalled; then
         arkmanager installmods --verbose
     fi
-
-    exec arkmanager $@
+    
+    if [ -z "$@" ]; then
+      echo "Executing in background : arkmanager @$"
+      arkmanager $@ &
+    fi
+    sleep infinity
 }
 
 main() {
