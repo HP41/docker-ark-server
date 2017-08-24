@@ -58,13 +58,18 @@ mustBeSteamUser() {
 areModsInstalled() {
     ! arkmanager getpid 2>1 | grep -q 'install this mod'
 }
+
 checkForUpdates() {
     mustBeSteamUser
     
     arkmanager installmods --verbose
-    arkmanager update --save-world --update-mods --verbose --no-autostart --backup
+    arkmanager update --saveworld --update-mods --verbose --no-autostart --backup
 }
 
+stopArk() {
+    arkmanager stop --saveworld
+    exit 0
+}
 
 arkManager() {
     mustBeSteamUser
@@ -86,11 +91,14 @@ arkManager() {
         arkmanager installmods --verbose
     fi
     
-    if [ -n "$@" ]; then
-      echo "Executing in background : arkmanager $@"
-      arkmanager $@ &
+    if [ -n "$1" ]; then
+      trap stopArk SIGINT SIGTERM
+      echo "Executing: arkmanager $@"
+      arkmanager $@
+    else
+      echo "No command supplied. Idling indefinitely."
+      sleep infinity
     fi
-    sleep infinity
 }
 
 main() {

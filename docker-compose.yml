@@ -1,14 +1,17 @@
-version: '2'
+version: 2
 services:
   ark:
     build: .
-    restart: never
+    init: true
     tty: true
+    restart: on-failure
     network_mode: host
-    cpuset: "0-7"
+    cpuset: '0-7'
+    stop_grace_period: 3m
+    stop_signal: SIGINT
     volumes:
       - ./data:/home/steam
-      - ./bootstrap:/bootstrap
+      - ./bootstrap:/bootstrap:ro
     ulimits:
       nproc: 100000
       nofile:
