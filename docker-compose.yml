@@ -7,7 +7,7 @@ services:
     network_mode: host
     cpuset: '0-7'
     stop_grace_period: 3m
-    stop_signal: SIGINT
+    stop_signal: SIGTERM
     volumes:
       - ./data:/home/steam
       - ./bootstrap:/bootstrap:ro
