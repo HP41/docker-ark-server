@@ -11,7 +11,7 @@ isASTInstalled() {
 
 isASTVersionSameAs() {
     local version=$1
-    echo "${version}" | grep -q "^v$(arkmanager --version | grep Version | awk '{print $2}')" 
+    echo "${version}" | grep -q "^v$(arkmanager --version | grep Version | awk '{print $2}')"
 }
 
 installAST() {
@@ -61,14 +61,18 @@ areModsInstalled() {
 
 checkForUpdates() {
     mustBeSteamUser
-    
+
     arkmanager installmods --verbose
     arkmanager update --saveworld --update-mods --verbose --no-autostart --backup
 }
 
-stopArk() {
-    arkmanager stop --saveworld
-    exit 0
+trapSignals() {
+    ripInPeace() {
+      echo "Initializing graceful termination."
+      arkmanager stop --saveworld
+      exit 0
+    }
+    trap ripInPeace INT TERM
 }
 
 arkManager() {
@@ -90,13 +94,14 @@ arkManager() {
     if ! areModsInstalled; then
         arkmanager installmods --verbose
     fi
-    
+
     if [ -n "$1" ]; then
-      trap stopArk SIGINT SIGTERM
       echo "Executing: arkmanager $@"
-      arkmanager $@
+      trapSignals
+      arkmanager $@ &
+      wait "$!"
     else
-      echo "No command supplied. Idling indefinitely."
+      echo "No arkmanager command. Idling indefinitely."
       sleep infinity
     fi
 }

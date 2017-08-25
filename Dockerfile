@@ -8,7 +8,7 @@ RUN apt-get update && \
     useradd -m steam && \
     chmod +x /tini
 
-ENTRYPOINT ["/tini", "--", "/entrypoint.sh"]
+ENTRYPOINT ["/tini", "-v", "--", "/entrypoint.sh"]
 CMD ["run"]
 
 WORKDIR /home/steam

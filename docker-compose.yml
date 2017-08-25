@@ -6,7 +6,7 @@ services:
     restart: on-failure
     network_mode: host
     cpuset: '0-7'
-    stop_grace_period: 3m
+    stop_grace_period: 10m
     stop_signal: SIGTERM
     volumes:
       - ./data:/home/steam
