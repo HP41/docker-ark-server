@@ -4,6 +4,7 @@ CONFIG_BOOTSTRAP_DIR=/bootstrap
 declare -A CONFIG_PATHS;CONFIG_PATHS[".arkmanager.cfg"]="/home/steam/.arkmanager.cfg"
                         CONFIG_PATHS["main.cfg"]="/home/steam/.config/arkmanager/instances/main.cfg"
                         CONFIG_PATHS["GameUserSettings.ini"]="/home/steam/ARK/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
+                        CONFIG_PATHS["Game.ini"]="/home/steam/ARK/ShooterGame/Saved/Config/LinuxServer/Game.ini"
 
 isASTInstalled() {
     [ "$(which arkmanager)" = "/home/steam/bin/arkmanager" ]
