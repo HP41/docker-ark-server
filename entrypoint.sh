@@ -62,8 +62,6 @@ areModsInstalled() {
 
 checkForUpdates() {
     mustBeSteamUser
-
-    arkmanager installmods --verbose
     arkmanager update --saveworld --update-mods --verbose --no-autostart --backup
 }
 
