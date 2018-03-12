@@ -1,0 +1,3 @@
+[/script/onlinesubsystemutils.ipnetdriver]
+NetServerMaxTickRate=60
+LanServerMaxTickRate=60

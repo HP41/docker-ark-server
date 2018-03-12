@@ -5,6 +5,7 @@ declare -A CONFIG_PATHS;CONFIG_PATHS[".arkmanager.cfg"]="/home/steam/.arkmanager
                         CONFIG_PATHS["main.cfg"]="/home/steam/.config/arkmanager/instances/main.cfg"
                         CONFIG_PATHS["GameUserSettings.ini"]="/home/steam/ARK/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
                         CONFIG_PATHS["Game.ini"]="/home/steam/ARK/ShooterGame/Saved/Config/LinuxServer/Game.ini"
+                        CONFIG_PATHS["Engine.ini"]="/home/steam/ARK/ShooterGame/Saved/LinuxServer/Engine.ini"
 
 isASTInstalled() {
     [ "$(which arkmanager)" = "/home/steam/bin/arkmanager" ]

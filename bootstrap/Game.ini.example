@@ -1,0 +1,13 @@
+[/script/shootergame.shootergamemode]
+GlobalSpoilingTimeMultiplier=1.5
+GlobalItemDecompositionTimeMultiplier=1.5
+GlobalCorpseDecompositionTimeMultiplier=1.5
+ResourceNoReplenishRadiusPlayers=0.5
+ResourceNoReplenishRadiusStructures=0.5
+MatingIntervalMultiplier=0.2
+EggHatchSpeedMultiplier=10
+BabyMatureSpeedMultiplier=10
+BabyFoodConsumptionSpeedMultiplier=0.5
+CropDecaySpeedMultiplier=3.0
+BabyImprintingStatScaleMultiplier=2.0
+BabyCuddleIntervalMultiplier=0.25
